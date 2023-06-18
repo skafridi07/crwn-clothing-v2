@@ -7,6 +7,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -73,3 +75,12 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+//It will call our callback whenever auth changes, for example when a user signs-in, singn-up or out
+// This is an open listener which means the moment we set it it will wait for changes in auth
+// But we have to make it stop listening after we run our callback to avoid memory leaks when
+// a component is unmounted
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
