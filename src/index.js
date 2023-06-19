@@ -7,16 +7,16 @@ import { UserProvider } from "./contexts/user.context";
 
 import "./index.scss";
 import ProductsProvider from "./contexts/products.context";
-import CardProvider from "./contexts/cart.context";
+import CartProvider from "./contexts/cart.context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
         <ProductsProvider>
-          <CardProvider>
+          <CartProvider>
             <App />
-          </CardProvider>
+          </CartProvider>
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
