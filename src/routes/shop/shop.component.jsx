@@ -1,16 +1,17 @@
-import { useContext } from "react";
-import { ProductContext } from "../../contexts/products.context";
-import ProductCard from "../../components/product-card/product-card.component";
+import { Routes, Route } from "react-router-dom";
+import CategoriesPreview from "../categories-preview/categories-preview.component";
+import Category from "../category/category.component";
 import "./shop.styles.scss";
 
 const Shop = () => {
-  const { products } = useContext(ProductContext);
   return (
-    <div className="products-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      {/*  The :category is a placeholder that captures the value of the category parameter
+       in the URL path. For example, if the URL path is "/electronics", the value of category
+        will be "electronics". This route is used for dynamic category pages. */}
+      <Route path=":category" element={<Category />} />
+    </Routes>
   );
 };
 
